@@ -73,6 +73,8 @@ const LOADING_MESSAGES = [
 ];
 
 const ASPECT_RATIOS: AspectRatio[] = ['2:3', '3:4', '1:1', '9:16', '4:3', '16:9'];
+const OUTPUT_COUNTS = [1, 2, 3, 4] as const;
+const POLLINATIONS_QUEUE_DELAY_MS = 1400;
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -218,6 +220,7 @@ export default function App() {
   const [aspectRatio, setAspectRatio]               = useState<AspectRatio>('1:1');
   const [generationMode, setGenerationMode]         = useState<'image' | 'video'>('image');
   const [model, setModel]                           = useState<ModelType>('pollinations');
+  const [outputCount, setOutputCount]               = useState<number>(1);
   const [images, setImages]                         = useState<GeneratedImage[]>([]);
   const [videos, setVideos]                         = useState<GeneratedVideo[]>([]);
   const [isGenerating, setIsGenerating]             = useState(false);
@@ -319,24 +322,27 @@ export default function App() {
       }
 
       if (model === 'pollinations') {
-        await new Promise((r) => setTimeout(r, 6000));
         const { w, h } = getPollinationsDimensions(aspectRatio);
         const enc = encodeURIComponent(prompt || 'Stunning digital art masterpiece');
-        const newImages: GeneratedImage[] = Array(4).fill(null).map(() => ({
-          id: crypto.randomUUID(),
-          url: `https://image.pollinations.ai/prompt/${enc}?width=${w}&height=${h}&seed=${Math.floor(Math.random() * 1_000_000)}&model=flux&nologo=true`,
-          prompt: prompt || 'Visual interpretation',
-          aspectRatio,
-          model: 'pollinations',
-          timestamp: Date.now(),
-        }));
+        const newImages: GeneratedImage[] = [];
+        for (let i = 0; i < outputCount; i++) {
+          await new Promise((r) => setTimeout(r, POLLINATIONS_QUEUE_DELAY_MS));
+          newImages.push({
+            id: crypto.randomUUID(),
+            url: `https://image.pollinations.ai/prompt/${enc}?width=${w}&height=${h}&seed=${Math.floor(Math.random() * 1_000_000)}&model=flux&nologo=true`,
+            prompt: prompt || 'Visual interpretation',
+            aspectRatio,
+            model: 'pollinations',
+            timestamp: Date.now(),
+          });
+        }
         setImages((prev) => [...newImages, ...prev]);
         return;
       }
 
       // Gemini models
       const ai = new GoogleGenAI({ apiKey });
-      const promises = Array(4).fill(null).map(async (_, index) => {
+      const promises = Array.from({ length: outputCount }).map(async (_, index) => {
         if (uploadedFile || model === 'flash-image') {
           const targetModel =
             model === 'imagen-ultra' || model === 'flash-image'
@@ -694,6 +700,30 @@ export default function App() {
               ))}
             </div>
           </section>
+
+          {/* Output Count */}
+          {generationMode === 'image' && (
+            <section>
+              <label className="text-[10px] uppercase tracking-widest text-primary block mb-3 font-bold">
+                Output Count
+              </label>
+              <div className="grid grid-cols-4 gap-2">
+                {OUTPUT_COUNTS.map((count) => (
+                  <button
+                    key={count}
+                    onClick={() => setOutputCount(count)}
+                    className={`py-2 rounded border text-[10px] transition-all font-mono ${
+                      outputCount === count
+                        ? 'bg-primary text-black border-primary'
+                        : 'bg-black/40 border-border-subtle text-neutral-500 hover:border-primary/50'
+                    }`}
+                  >
+                    {count}
+                  </button>
+                ))}
+              </div>
+            </section>
+          )}
 
           {/* Prompt */}
           <section className="flex-1 flex flex-col border-t border-white/5 pt-6">
