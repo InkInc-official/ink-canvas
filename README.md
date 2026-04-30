@@ -72,7 +72,7 @@ npm run build
 
 ## 🌐 デモ
 
-準備中
+https://inkinc-official.github.io/ink-canvas/
 
 ---
 
