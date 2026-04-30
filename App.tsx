@@ -730,6 +730,10 @@ export default function App() {
             <label className="text-[10px] uppercase tracking-widest text-primary block mb-3 font-bold">
               Generation Intent
             </label>
+            <p className="mb-3 text-[10px] text-neutral-500 leading-relaxed flex items-start gap-1.5">
+              <Info className="w-3 h-3 mt-0.5 shrink-0 text-neutral-600" />
+              <span>Free Mode（Pollinations）は英語プロンプト推奨です。日本語より生成結果が安定しやすくなります。</span>
+            </p>
             <textarea
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
