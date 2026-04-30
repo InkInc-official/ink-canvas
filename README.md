@@ -1,81 +1,92 @@
 # Ink Canvas
 
-**AI Image Generation Studio — by Ink Inc.**
+無料から始められるAI画像生成キャンバス
 
-> AI Creation, Human Care. The Future Drawn Together.
-
-Pollinations.ai（完全無料）と Google Gemini API（任意・ユーザー提供キー）を搭載した  
-高精細AI素材生成スタジオです。
+Ink Canvasは、Ink Inc.が開発した軽量なAI画像生成Webアプリです。  
+APIキー不要ですぐに画像生成を体験できます。
 
 ---
 
-## Features
+## ✨ 特徴
 
-- **Pollinations Flux** — APIキー不要・完全無料で画像生成
-- **Gemini Flash / Imagen 4 / Imagen 4 Ultra** — 自前のGemini APIキーで高品質生成
-- **Veo 2.0** — 画像→動画 / テキスト→動画（Gemini APIキー必要）
-- リファレンス画像アップロード（Image-to-Image）
-- 6種のアスペクト比（立ち絵・YouTube・スマホ縦動画など）
-- PNG/MP4ダウンロード
+### 🟢 Free Mode（標準）
+- Pollinationsを使用
+- APIキー不要
+- 完全無料で画像生成可能
+- 即座に利用開始
+
+### 🔵 Advanced Mode（任意）
+- Google Gemini APIに対応
+- 高品質画像生成（Imagen / Flash Image）
+- ユーザー自身のAPIキーが必要
 
 ---
 
-## Quick Start
+## 🎨 主な機能
+
+- アスペクト比選択（1:1 / 2:3 / 16:9 など）
+- リファレンス画像入力（Image-to-Image）
+- 動画生成（Gemini API使用時）
+- ワンクリック保存
+
+---
+
+## ⚠️ API利用について
+
+Ink CanvasはAPIキーを提供しません。
+
+Gemini機能を使用する場合：
+
+- APIキーはユーザー自身で用意してください
+- Google側で利用料金が発生します
+- 無料枠を超えた場合は課金されます
+
+👉 https://ai.google.dev/pricing
+
+APIキーはブラウザのlocalStorageに保存され、サーバーには送信されません。
+
+---
+
+## 🚀 使い方
 
 ```bash
-git clone https://github.com/InkInc-official/ink-canvas.git
-cd ink-canvas
 npm install
 npm run dev
 ```
 
-ブラウザで `http://localhost:3000` を開いてください。
+ブラウザで開く：
+
+```
+http://localhost:5173
+```
 
 ---
 
-## Gemini APIキーについて
-
-Pollinations エンジンはキー不要・完全無料で動作します。
-
-Gemini モデル（Flash Image / Imagen 4 / Veo）を使用する場合は、  
-アプリのサイドバーから Gemini API キーを入力してください。
-
-- キーはブラウザの `localStorage` に保存されます（サーバーには送信されません）
-- Google側の[利用料金](https://ai.google.dev/pricing)が発生します。無料枠を超えた場合は課金されます
-- APIキー取得: https://aistudio.google.com/app/apikey
-
----
-
-## Tech Stack
-
-| レイヤー | 技術 |
-|---|---|
-| フレームワーク | React 19 + TypeScript |
-| スタイリング | TailwindCSS v4 |
-| アニメーション | Motion (motion/react) |
-| ビルド | Vite |
-| 画像生成（無料） | Pollinations.ai |
-| 画像生成（有料） | Google Gemini API（Imagen 4） |
-| 動画生成（有料） | Google Gemini API（Veo 2.0） |
-
----
-
-## Deploy
-
-Vercel / Netlify / Google Cloud Run など静的ホスティングに対応しています。
+## 🛠 ビルド
 
 ```bash
 npm run build
-# dist/ フォルダをデプロイ
 ```
-
-環境変数の設定は不要です。APIキーはユーザーがブラウザ上で入力します。
 
 ---
 
-## License
+## 🌐 デモ
 
-Apache-2.0
+準備中
 
-© 2025-2026 黒井葉跡 / Ink Inc.  
+---
+
+## 🏢 Ink Inc.について
+
+Ink Canvasは **Ink Inc.** によって開発・公開されています。
+
+AIを活用したクリエイティブ制作・配信支援を行っています。
+
+👉 ライバー募集中  
 https://inkinc-hp.vercel.app/
+
+---
+
+## 📄 ライセンス
+
+Apache License 2.0
