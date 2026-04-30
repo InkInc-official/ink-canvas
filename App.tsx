@@ -921,16 +921,32 @@ export default function App() {
       </AnimatePresence>
 
       {/* Footer */}
-      <footer className="h-8 bg-[#0A0A0F] border-t border-border-subtle px-8 flex items-center justify-between text-[9px] uppercase tracking-[0.2em] text-primary/40 font-mono shrink-0">
-        <div>Ink Canvas — Ink Inc. // AI Creation, Human Care.</div>
-        <div className="flex gap-8">
-          <span>SESSION: {new Date().toLocaleDateString('ja-JP')}</span>
-          <a href="https://inkinc-hp.vercel.app/" target="_blank" rel="noopener noreferrer"
-            className="hover:text-primary transition-colors">
-            inkinc-hp.vercel.app ↗
-          </a>
-        </div>
-      </footer>
+<footer className="h-8 bg-[#0A0A0F] border-t border-border-subtle px-8 flex items-center justify-between text-[9px] uppercase tracking-[0.2em] text-primary/40 font-mono shrink-0">
+  
+  {/* 左側 */}
+  <div>
+    Ink Canvas — Ink Inc. // AI Creation, Human Care.
+  </div>
+
+  {/* 右側 */}
+  <div className="flex gap-8 items-center">
+    <span>SESSION: {new Date().toLocaleDateString('ja-JP')}</span>
+
+    <a
+      href="https://inkinc-hp.vercel.app/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group flex items-center gap-2 text-primary/50 hover:text-primary transition-all"
+    >
+      <span className="opacity-60 group-hover:opacity-100">
+  JOIN INK INC. — LIVER PROGRAM
+      </span>
+
+      {/* 小さい光るドット */}
+      <span className="w-1.5 h-1.5 rounded-full bg-primary opacity-50 group-hover:opacity-100 group-hover:shadow-[0_0_8px_rgba(140,120,81,0.6)] transition-all" />
+    </a>
+  </div>
+</footer>
     </div>
   );
 }
