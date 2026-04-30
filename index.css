@@ -1,0 +1,38 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@theme {
+  --font-serif: "Cormorant Garamond", serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Space Grotesk", monospace;
+  
+  --color-primary: #8C7851; /* Dark Gold/Bronze */
+  --color-accent: #C5B396; /* Light Gold */
+  --color-bg-terminal: #0F0F12;
+  --color-bg-sidebar: #121218;
+  --color-bg-panel: #16161D;
+  --color-border-subtle: #2A2621;
+}
+
+@layer base {
+  body {
+    @apply bg-bg-terminal text-[#E0D7CC] font-sans antialiased;
+  }
+}
+
+.geometric-grid {
+  background-image: radial-gradient(circle at 1px 1px, rgba(140, 120, 81, 0.05) 1px, transparent 0);
+  background-size: 40px 40px;
+}
+
+.executive-border {
+  @apply border border-border-subtle hover:border-primary/50 transition-colors;
+}
+
+.gold-term-gradient {
+  background: linear-gradient(135deg, #8C7851 0%, #4A3F2B 100%);
+}
+
+.glass-terminal {
+  @apply bg-bg-panel border border-border-subtle;
+}
